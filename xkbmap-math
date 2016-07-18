@@ -22,7 +22,7 @@ xkb_symbols "basic" {
 	key <AE01> {[ 1,		exclam,		adiaeresis,		Adiaeresis		]};
 	key <AE02> {[ 2,		at,		udiaeresis,		Udiaeresis		]};
 	key <AE03> {[ 3,		numbersign,	0x10000eb,		0x10000cb		]};
-	key <AE04> {[ 4,		dollar,		0x10000e6,		0x10000c6		]};
+	key <AE04> {[ 4,		dollar,		section,		0x10000c6		]};
 	key <AE05> {[ 5,		percent,	EuroSign,		degree			]};
 	key <AE06> {[ 6,		asciicircum,	0x1002261,		0x1002262		]};
 	key <AE07> {[ 7,		ampersand,	onesuperior,		0x1002190		]};
