@@ -51,7 +51,7 @@ xkb_symbols "basic" {
 	key <AC04> {[ f,		F,		f,			0x10000a7		]};
 	key <AC05> {[ g,		G,		gcedilla,		Gcedilla		]};
 	key <AC06> {[ h,		H,		h,			H			]};
-	key <AC07> {[ j,		J,		icircumflex,		Icircumflex		]};
+	key <AC07> {[ j,		J,		j,			J		]};
 	key <AC08> {[ k,		K,		kcedilla,		Kcedilla		]};
 	key <AC09> {[ l,		L,		lcedilla,		Lcedilla		]};
 	key <AC10> {[ semicolon,	colon,		doublelowquotemark,	doublelowquotemark	]};
