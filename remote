@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"
+
+sudo -s <<-EOF
+    variant=0
+    while variant=\$(( (variant % 2) + 1 )); do
+        #sudo -iu "#\$SUDO_UID" click -7
+        actkbd -s --device /dev/input/by-id/usb-HAS_HAS_HS304-event-kbd --config "remote-\$variant.conf"
+    done
+EOF
