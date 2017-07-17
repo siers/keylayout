@@ -20,7 +20,8 @@ if [ "$1" = "remote" ]; then
 
     setxkbmap xkbmap-remote -print | xkbcomp -I$HOME/code/desktop - $DISPLAY -i "$id" 2>&1 | silence
 else
-    setxkbmap "xkbmap-custom,xkbmap-math,ru" -print -option grp:rctrl_rshift_toggle -option caps:none |
+    #setxkbmap "xkbmap-custom,xkbmap-math,ru" -print -option grp:rctrl_rshift_toggle -option caps:none |
+    setxkbmap "xkbmap-custom,xkbmap-math,ru" -print -option caps:none |
         xkbcomp -I$HOME/code/desktop - $DISPLAY 2>&1 | silence
     xmodmap -e 'keycode 66 = Super_L'
 fi
