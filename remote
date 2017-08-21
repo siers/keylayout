@@ -2,10 +2,35 @@
 
 cd "$(dirname "$0")"
 
-sudo -s <<-EOF
+if ! command -v actkbd &> /dev/null; then
+    echo "can't find actkbd, quitting!"
+    exit 1
+fi
+
+preset="${1:-remote}"
+
+if ! ls "$preset"-1.conf; then
+    ls "$preset"-1.conf
+    echo
+    echo "Should be able to access keymapping files of pattern: $preset-XXX.conf"
+    echo "  e.g. $preset-1.conf, $preset-2.conf"
+    exit
+fi
+
+id="$(xinput | ruby -npe '$_ = ($_.match(/(?<=id=)\d+/)[0] + "\n" if $_ =~ /HS304.*keyboard/)')"
+xinput disable "$id"
+
+click="$(command -v click || command -v false)"
+count="$(ls -1 "$preset"-*.conf | wc -l)"
+
+sudo -s <<-EOF | while read variant; do "$click" "$variant"; done
     variant=0
-    while variant=\$(( (variant % 2) + 1 )); do
-        #sudo -iu "#\$SUDO_UID" click -7
-        actkbd -s --device /dev/input/by-id/usb-HAS_HAS_HS304-event-kbd --config "remote-\$variant.conf"
+    while
+        variant=\$(( (variant % 2) + \$(($count - 1)) ))
+        echo "\$(( -12 + \$variant * 7 ))"
+    do
+        actkbd -s \
+            --device /dev/input/by-id/usb-HAS_HAS_HS304-event-kbd \
+            --config "$preset-\$variant.conf" >&2
     done
 EOF
