@@ -18,19 +18,25 @@ if ! ls "$preset"-1.conf; then
 fi
 
 id="$(xinput | ruby -npe '$_ = ($_.match(/(?<=id=)\d+/)[0] + "\n" if $_ =~ /HS304.*keyboard/)')"
-xinput disable "$id"
 
 click="$(command -v click || command -v false)"
 count="$(ls -1 "$preset"-*.conf | wc -l)"
 
-sudo -s <<-EOF | while read variant; do "$click" "$variant"; done
+# the root bash script communicates the preset count via stderr
+# so keep stderr clean of bad input
+sudo -s <<-EOF > /dev/stderr 2>&1 | while read variant; do "$click" "$variant"; done
     variant=0
     while
         variant=\$(( (variant % 2) + \$(($count - 1)) ))
-        echo "\$(( -12 + \$variant * 7 ))"
+        echo "\$(( -12 + \$variant * 7 ))" >&2
     do
+        xinput disable "$id" &> /dev/null
+
         actkbd -s \
             --device /dev/input/by-id/usb-HAS_HAS_HS304-event-kbd \
-            --config "$preset-\$variant.conf" >&2
+            --config "$preset-\$variant.conf" 2>&1 \
+        |
+            tee /dev/stderr |
+            grep -m1 2>&1 'failed to read event from' && break
     done
 EOF
