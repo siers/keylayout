@@ -24,11 +24,11 @@ count="$(ls -1 "$preset"-*.conf | wc -l)"
 
 # the root bash script communicates the preset count via stderr
 # so keep stderr clean of bad input
-sudo -s <<-EOF > /dev/stderr 2>&1 | while read variant; do "$click" "$variant"; done
+sudo -s <<-EOF | while read variant; do "$click" "$variant"; done
     variant=0
     while
-        variant=\$(( (variant % 2) + \$(($count - 1)) ))
-        echo "\$(( -12 + \$variant * 7 ))" >&2
+        variant=\$(( (variant % $count) + 1 ))
+        echo "\$(( -12 + \$variant * 7 ))"
     do
         xinput disable "$id" &> /dev/null
 
