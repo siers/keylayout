@@ -10,3 +10,6 @@
     They're key remappings for my cheap RF presentation remote.
 
     RF 2 4GHz Wireless Presenter USB Remote Control Presentation Mouse Pointer Black
+
+- usage
+    ./remote confs/remote # requires sudo
