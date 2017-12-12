@@ -18,7 +18,7 @@ xkb_symbols "basic" {
 	name[Group1]= "Latvian";
 
 	key <TLDE> {[ asciitilde,	grave,		0x10025cf,		notsign			]};
-	key <AE01> {[ 1,		exclam,		0x101f525,		Adiaeresis		]};
+	key <AE01> {[ 1,		exclam,		0x101f525,		0x1002714		]};
 	key <AE02> {[ 2,		at,		udiaeresis,		Udiaeresis		]};
 	key <AE03> {[ 3,		numbersign,	0x100266d,		0x10000cb		]};
 	key <AE04> {[ 4,		dollar,		0x10000e6,		0x10000c6		]};
