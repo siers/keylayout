@@ -17,14 +17,16 @@ if ! ls "$preset"-1.conf; then
     exit
 fi
 
-id="$(xinput | ruby -npe '$_ = ($_.match(/(?<=id=)\d+/)[0] + "\n" if $_ =~ /HS304.*keyboard/)')"
+#id="$(xinput | ruby -npe '$_ = ($_.match(/(?<=id=)\d+/)[0] + "\n" if $_ =~ /HS304/)[0]')"
+id="$(xinput | ruby -npe '$_ = ($a = $_.match(/(?<=id=)\d+/)[0] + "\n" if !$a && $_ =~ /HS304/)')"
 
 click="$(command -v click || command -v false)"
+click="true"
 count="$(ls -1 "$preset"-*.conf | wc -l)"
 
 # the root bash script communicates the preset count via stderr
 # so keep stderr clean of bad input
-sudo -s <<-EOF | while read variant; do "$click" "$variant"; done
+sudo -s bash <<-EOF | while read variant; do "$click" "$variant"; done
     variant=0
     while
         variant=\$(( (variant % $count) + 1 ))
