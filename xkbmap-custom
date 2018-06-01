@@ -20,7 +20,7 @@ xkb_symbols "basic" {
 	key <TLDE> {[ asciitilde,	grave,		0x1002022,		0x10025cf		]};
 	key <AE01> {[ 1,		exclam,		0x1002714,		0x1002717		]};
 	key <AE02> {[ 2,		at,		notsign,		0x101f525		]};
-	key <AE03> {[ 3,		numbersign,	0x100266d,		0x10000cb		]};
+	key <AE03> {[ 3,		numbersign,	0x100266d,		0x101f4a9		]};
 	key <AE04> {[ 4,		dollar,		0x10000e6,		0x10000c6		]};
 	key <AE05> {[ 5,		percent,	EuroSign,		degree			]};
 	key <AE06> {[ 6,		asciicircum,	0x1002261,		0x1002262		]};
