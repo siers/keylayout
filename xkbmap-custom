@@ -50,7 +50,7 @@ xkb_symbols "basic" {
 	key <AC03> {[ d,		D,		d,			D			]};
 	key <AC04> {[ f,		F,		f,			0x10000a7		]};
 	key <AC05> {[ g,		G,		gcedilla,		Gcedilla		]};
-	key <AC06> {[ h,		H,		h,			H			]};
+	key <AC06> {[ h,		H,		h,			0x1002764		]};
 	key <AC07> {[ j,		J,		j,			J		]};
 	key <AC08> {[ k,		K,		kcedilla,		Kcedilla		]};
 	key <AC09> {[ l,		L,		lcedilla,		Lcedilla		]};
